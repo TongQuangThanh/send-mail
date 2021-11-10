@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
-  secure: true,
-  host: 'smtp.gmail.com',
+  // secure: true,
+  // host: 'smtp.gmail.com',
   auth: {
     type: 'OAuth2',
     user: 'tongquangthanh1994@gmail.com',
