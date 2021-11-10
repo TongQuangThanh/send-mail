@@ -13,9 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
+  secure: true,
+  host: 'smtp.gmail.com',
   auth: {
-    user: 'tongquangthanh1994@gmail.com',
-    pass: 'quangthanh94'
+    type: 'OAuth2',
+    user: 'expressjs-send-email@expressjs-send-email.iam.gserviceaccount.com',
+    privateKey: "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDgDknL5mGitP4p\nteNOeFsqQmfnjcJB5sbF1G2Sqho57jcGhVRJ5KW2gimW96zoltWxGeD7TDtMu3sm\nnQXqHmYYv7cW5awWyhD9ePb0VGhiww0tYO4suWfv0ahb1NuJrh1OrE3YslL+vlZJ\nY3KNPnkZrFYxL/4aH9moIXw4Js/mUjloDI7FogjRai2CWdAtuvsThX1hmgMHM6Af\n6INPpSZWcF4AJUCCFRWS+GedPKN6JWLxyZs7oKpZaZjRInLkZQfMMQTJRZnHPqno\nWcoBzMb9migrgiRJfLBMS23Gk51CCK19we179yFfzLImVYSyjlDe0fdoUnsWVI/P\ncAeHW9rbAgMBAAECggEAIYVhuxTLtLkZcYoZ6OqO0SLAQt9tmch6Iqzme9PhOpuO\nNfaKpseDl2uf50tE3kN60xVJGK/OC2vdP+isMtu7cKZ2MQHJnls68YFAiUt7lpMS\nDKD84UoX58RZSOvusImRLu0OdIYxbpVxeWdcgw8+tP2Yo6FHhgcP3FyuJgSAhDev\nU+TmdDpYIXCHB8hUReQ3MIgkloLSsjAeNsdjzIy5c4WcojpyQ6DFomqyKrahfJAE\nSKVoWoMYlIo9d/NKgUdQheW3knjlztqv1QhobpJrNIwuEHPPXoXCn+I7G28yktea\nDS9czPpNbDt3rB8Gz6d0i+pwAf1hKThX47wxHUkMmQKBgQD4FA1gb3akAxbkGkW/\n+8IJAvyQNt8luUHlVw/e0W2Yd8Fr9IDXGAMcfg5v+tumw57MFtCM9SqA3wIfLGLl\nHjnPo25yJ/yfhSTnS7RqEM5biOfalmt3Y6Myqf5+CcXMVgXygdkgAy61rD1xlCkl\nqqF5nUyZGS3BOUKYJ3h13vtExQKBgQDnNdxlAXoNHG06GTgrtV3u/YTMTfdup1jF\nmK9tYNSgbVDex/cc1ZYuyIKPV//Nw4PTYpd8Z9fphTEkUF6tUz28ZXvOBfnIAS4v\ni+dd07q5fzVa2vxqDL+w6+6avCSuU4deF+M3NHPeb+M4v73aYPn371RxH2fmoAON\nY9HzHFLbHwKBgQCSIs3WdxK+fwtnB4r7EwU0Zcv98DT3dfA5d1Xj/h6/aBxKyddz\n3bNHf4JluLLXw/ixZOcpgeqty7DmSDFhorKPfEi9eoy4M6iPj+sRaCEHjth1zZI0\n3D7ww28lNACO5EXQm2kaEIXdgz8Wvx6WD7Pbfiv3K/vmDSMLmoS9esMtuQKBgQDd\n5YpEgftR8/M8LBIFmMWy5Sp7LWSHlSIUWaobTjAiW2eet8kIqk+9TIBI9Aqzvq2Y\nxOlf4wWLv2FfWabTr6zzT25XVtLXSZK63QlKujZdaqGZNcvEN8INGRFg/aoyiEXF\nXyWYyMVfOICY6SRbHnEoq0+eVabQ5sch/ifzqz41vwKBgQCqsMyUFcn7jFL9jx27\nS7Y53y8Mt3hNZq0Z6Q6+VB37Tf6w1VV8IQgFuVeZLsbBe5ugxCslY3kyBrZlgdFv\nIeoLaWq4zzpW27JSUvdAtcVU5eqO8HK4igZ0gaiJX83JNDHxHm5IUjCEyHGqO9Ny\na20XyFxuEcNxBPXFFBD4yEay5A==\n-----END PRIVATE KEY-----\n",
+    serviceClient: '110420376546928496596'
   }
 });
 
@@ -35,7 +39,7 @@ app.post("/mail", (req, res, next) => {
       Chi tiết: ${req.body.roomName}
     `
   };
-  transporter.sendMail(mailOptions, function(error, info){
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
     } else {
